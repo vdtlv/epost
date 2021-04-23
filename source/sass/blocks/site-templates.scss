@@ -1,0 +1,20 @@
+.site-templates {
+	padding: 0 9px;
+}
+
+.site-templates h3 {
+	font-weight: 500;
+	font-size: 32px;
+	line-height: 32px;
+	text-align: left;
+
+	margin-top: 21px;
+	margin-bottom: 10px;
+}
+
+.site-templates ul {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}

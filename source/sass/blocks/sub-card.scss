@@ -1,0 +1,129 @@
+.sub-card {
+	text-align: left;
+}
+
+.sub-card form {
+	display: flex;
+	flex-direction: column;
+
+	min-height: calc(100vh - 346px);
+}
+
+.sub-card p {
+	margin-top: 0;
+	margin-bottom: 8px;
+}
+
+.sub-card--smm p {
+	margin-top: 24px;
+}
+
+.sub-card__footer {
+	display: flex;
+	justify-content: space-between;
+
+	margin-top: auto;
+	padding-bottom: 26px;
+}
+
+.sub-card__footer .button {
+	width: 162px;
+}
+
+.sub-card__done-button {
+	background-color: $color-button-done;
+  border-color: $color-button-done;
+}
+
+.sub-card__footer .sub-card__done-button--smm {
+	width: 100%
+}
+
+.sub-card__back-button {
+	background-color: $color-button-back;
+  border-color: $color-button-back;
+}
+
+.sub-card__two-column-menu {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.sub-card__radio-menu {
+	display: flex;
+	justify-content: center;
+}
+
+.sub-card__radio-option {
+	position: relative;
+
+	&::after {
+		content: "";
+
+		pointer-events: none;
+
+		position: absolute;
+		top: 6px;
+		left: 16px;
+
+		width: 100%;
+		height: 100%;
+
+		background-repeat: no-repeat;
+	}
+
+	&--halign-left::after {
+		background-image: url("../img/h-align-left.svg");
+	}
+
+	&--halign-center::after {
+		background-image: url("../img/h-align-center.svg");
+	}
+
+	&--halign-right::after {
+		background-image: url("../img/h-align-right.svg");
+	}
+
+	&--valign-left::after {
+		background-image: url("../img/v-align-top.svg");
+	}
+
+	&--valign-center::after {
+		background-image: url("../img/v-align-center.svg");
+	}
+
+	&--valign-right::after {
+		background-image: url("../img/v-align-bottom.svg");
+	}
+}
+
+
+
+.sub-card__radio-menu input {
+	-webkit-appearance: none;
+
+	width: 54px;
+	height: 36px;
+
+	margin: 0;
+	padding: 0;
+
+	background-color: transparent;
+	border: 1px solid $color-border-primary;
+}
+
+.sub-card__radio-menu li:first-child input {
+	border-radius: 4px 0 0 4px;
+}
+
+.sub-card__radio-menu li:last-child input {
+	border-radius: 0 4px 4px 0;
+}
+
+.sub-card__radio-menu input:checked {
+	background-color: $color-border-primary;
+}
+
+

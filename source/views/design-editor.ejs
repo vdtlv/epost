@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>App</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body class="design-editor">
+    <h1 class="visually-hidden">Ещё название</h1>
+    <main class="container main-page">
+      <div class="card">
+        <div class="card__header">
+          <a class="back-button" href="design-catalog"><span class="visually-hidden">Back</span></a>
+          <div class="card__name">
+            <input type="text" id="template-name" name="design-name" placeholder="Enter name">
+            <label for="template-name" class="visually-hidden">Name of the template</label>
+          </div>
+          <button type="button" class="" id="submit">save</button>
+          <div class="card__img">
+            <div class="card__template"></div>
+          </div>
+        </div>
+        <div class="card__layers-and-add">
+          <ul class="card__layers">
+
+          </ul>
+          <button type="button" class="button card__add-layer-button" id="add-layer">+</button>
+        </div>
+        <div class="card__menu hidden" id="template-popup">
+          <ul>
+            <li>
+              <button type="button" data-tab="background" id="background-button" class="button tab-button button--inverted">Add background</button>
+            </li>
+            <li>
+              <button type="button" data-tab="text-layer" class="button tab-button button--inverted">Add text layer</button>
+            </li>
+            <li>
+              <button type="button" data-tab="image-layer" class="button tab-button button--inverted">Add image layer</button>
+            </li>
+            <li>
+              <button type="button" data-tab="shape-layer" class="button tab-button button--inverted">Add shape layer</button>
+            </li>
+          </ul>
+        </div>
+        <div class="card__background-color sub-card hidden" id="background">
+          <form action="">
+            <h3 class="visually-hidden">Edit background</h3>
+            <p>Color</p>
+            <div class="input">
+              <input type="text" class="" id="design-background">
+              <label for="design-background" class="">Input HEX code for background. There is no transparency, color will be white, if something goes wrong.</label>
+            </div>
+            <div class="sub-card__footer">
+              <button type="button" class="button sub-card__done-button">Done</button>
+              <button type="button" class="sub-card__back-button button">
+            Back, don't save</button>
+            </div>
+          </form>
+        </div>
+        <div class="sub-card hidden" id="text-layer">
+          <form action="">
+            <h3 class="visually-hidden">Edit text layer</h3>
+            <p>Frame</p>
+            <div class="sub-card__two-column-menu">
+              <div class="input input--half">
+                <input type="text" class="design-x" id="design-text-x" inputmode="decimal">
+                <label for="design-text-x" class="">X</label>
+              </div>
+              <div class="input input--half">
+                <input type="text" class="design-y" id="design-text-y" inputmode="decimal">
+                <label for="design-text-y" class="">Y</label>
+              </div>
+              <div class="input input--half">
+                <input type="text" class="design-width" id="design-text-width" inputmode="decimal">
+                <label for="design-text-width" class="">Width</label>
+              </div>
+              <div class="input input--half">
+                <input type="text" class="design-height" id="design-text-height" inputmode="decimal">
+                <label for="design-text-height" class="">Height</label>
+              </div>
+            </div>
+            <!-- <p>Font</p>
+            <div class="input">
+              <input type="text" class="" id="design-text-font-family">
+              <label for="design-text-font-family" class="">Paste a Google Font link here</label>
+            </div> -->
+            <p>Font size</p>
+            <div class="input">
+              <input type="text" class="design-font-size" inputmode="decimal" id="design-text-font-size">
+              <label for="design-text-font-size" class="">Only size, without px LMAO</label>
+            </div>
+            <p>Text align</p>
+            <div class="sub-card__two-column-menu">
+              <ul class="sub-card__radio-menu">
+                <li class="sub-card__radio-option sub-card__radio-option--halign-left">
+                  <input class="design-horizontal-align" type="radio" name="halign" id="halign-top" value="left">
+                  <label for="halign-top" class="visually-hidden">Align Left</label>
+                </li>
+                <li class="sub-card__radio-option sub-card__radio-option--halign-center">
+                  <input class="design-horizontal-align" type="radio" name="halign" id="halign-center" value="center">
+                  <label for="halign-center" class="visually-hidden">Align Center</label>
+                </li>
+                <li class="sub-card__radio-option sub-card__radio-option--halign-right">
+                  <input class="design-horizontal-align" type="radio" name="halign" id="halign-bottom" value="right">
+                  <label for="halign-bottom" class="visually-hidden">Align Right</label>
+                </li>
+              </ul>
+              <ul class="sub-card__radio-menu">
+                <li class="sub-card__radio-option sub-card__radio-option--valign-left">
+                  <input class="design-vertical-align" type="radio" name="valign" id="valign-top" value="flex-start">
+                  <label for="valign-top" class="visually-hidden">Vertical Align Left</label>
+                </li>
+                <li class="sub-card__radio-option sub-card__radio-option--valign-center">
+                  <input class="design-vertical-align" type="radio" name="valign" id="valign-center" value="center">
+                  <label for="valign-center" class="visually-hidden">Vertical Align Center</label>
+                </li>
+                <li class="sub-card__radio-option sub-card__radio-option--valign-right">
+                  <input class="design-vertical-align" type="radio" name="valign" id="valign-bottom" value="flex-end">
+                  <label for="valign-bottom" class="visually-hidden">Vertical Align Right</label>
+                </li>
+              </ul>
+              <p class="hint">*Background color will be removed upon entering new text</p>
+            </div>
+            <div class="sub-card__footer">
+              <button type="button" class="button sub-card__done-button">Done</button>
+              <button type="button" class="sub-card__back-button button">
+            Back, don't save</button>
+            </div>
+          </form>
+        </div>
+        <div class="sub-card hidden" id="image-layer">
+          <form action="">
+            <h3 class="visually-hidden">Edit image layer</h3>
+            <p>Image</p>
+            <div class="sub-card__two-column-menu">
+              <div class="input input--half">
+                <input type="text" class="design-x" id="design-image-x" inputmode="decimal">
+                <label for="design-image-x" class="">X</label>
+              </div>
+              <div class="input input--half">
+                <input type="text" class="design-y" id="design-image-y" inputmode="decimal">
+                <label for="design-image-y" class="">Y</label>
+              </div>
+              <div class="input input--half">
+                <input type="text" class="design-width" id="design-image-width" inputmode="decimal">
+                <label for="design-image-width" class="">Width</label>
+              </div>
+              <div class="input input--half">
+                <input type="text" class="design-height" id="design-image-height" inputmode="decimal">
+                <label for="design-image-height" class="">Height</label>
+              </div>
+            </div>
+            <div class="sub-card__footer">
+              <button type="button" class="button sub-card__done-button">Done</button>
+              <button type="button" class="sub-card__back-button button">
+            Back, don't save</button>
+            </div>
+          </form>
+        </div>
+        <div class="sub-card hidden" id="shape-layer">
+          <form action="">
+            <h3 class="visually-hidden">Edit shape layer</h3>
+            <p>Shape</p>
+            <div class="sub-card__two-column-menu">
+              <div class="input input--half">
+                <input type="text" class="design-x" id="design-shape-x" inputmode="decimal">
+                <label for="design-shape-x" class="">X</label>
+              </div>
+              <div class="input input--half">
+                <input type="text" class="design-y" id="design-shape-y" inputmode="decimal">
+                <label for="design-shape-y" class="">Y</label>
+              </div>
+              <div class="input input--half">
+                <input type="text" class="design-width" id="design-shape-width" inputmode="decimal">
+                <label for="design-shape-width" class="">Width</label>
+              </div>
+              <div class="input input--half">
+                <input type="text" class="design-height" id="design-shape-height" inputmode="decimal">
+                <label for="design-shape-height" class="">Height</label>
+              </div>
+              <div class="input input--half">
+                <input type="text" class="design-background" id="design-shape-background" inputmode="decimal">
+                <label for="design-shape-background" class="">Inner Color</label>
+              </div>
+              <div class="input input--half">
+                <input type="text" class="design-border-color" id="design-shape-border-color" inputmode="decimal">
+                <label for="design-shape-border-color" class="">Border Color</label>
+              </div>
+              <div class="input input--half">
+                <input type="text" class="design-border-width" id="design-shape-border-width" inputmode="decimal">
+                <label for="design-shape-border-width" class="">Border Width</label>
+              </div>
+              <div class="input input--half">
+                <input type="text" class="design-border-radius" id="design-shape-border-radius" inputmode="decimal">
+                <label for="design-shape-border-radius" class="">Border Radius</label>
+              </div>
+              <p class="hint">*Text and shadow will be removed once you save the template</p>
+            </div>
+            <div class="sub-card__footer">
+              <button type="button" class="button sub-card__done-button">Done</button>
+              <button type="button" class="sub-card__back-button button">
+            Back, don't save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <div class="overlay hidden"></div>
+
+    <template id="template-layer-button">
+      <li class="card__layer" data-id="">
+        <button type="button" class="button button--inverted edit">Edit </button>
+        <button type="button" class="delete-layer"><span class="visually-hidden">Delete layer</span></button>
+      </li>
+    </template>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

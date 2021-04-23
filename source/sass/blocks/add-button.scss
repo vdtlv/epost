@@ -1,0 +1,30 @@
+.add-button {
+	position: relative;
+
+	width: 36px;
+	height: 36px;
+	padding: 0;
+
+	margin-top: -5px;
+
+	border: none;
+	border-radius: 50%;
+	background-color: $color-font-primary;
+
+	&::before, &::after {
+		content: "";
+		position: absolute;
+		left: 8px;
+		top: 17px;
+
+		width: 20px;
+		height: 2px;
+
+		border-radius: 2px;
+		background-color: $color-bg-primary;
+	}
+
+	&::after {
+		transform: rotate(90deg);
+	}
+}

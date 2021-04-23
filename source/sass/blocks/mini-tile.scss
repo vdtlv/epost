@@ -1,0 +1,59 @@
+.mini-tile {
+
+}
+
+.mini-tile button {
+	width: 163px;
+	height: 163px;
+
+	padding: 13px;
+
+	border: 1px solid $color-border-primary;
+	border-radius: 4px;
+	background-color: transparent;
+}
+
+.mini-tile h4 {
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 24px;
+
+	margin-top: 0;
+}
+
+.mini-tile__preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 24px;
+  background-color: #868E96;
+  margin: 0 auto;
+  border-radius: 2px;
+
+  &--1x1 {
+    width: 138px;
+    height: 138px;
+  }
+
+  &--2x1 {
+    width: 138px;
+    height: 69px;
+  }
+
+  &--4x3 {
+    width: 138px;
+    height: 104px;
+  }
+
+  &--9x16 {
+    width: 77px;
+    height: 138px;
+  }
+
+  &--16x9 {
+    width: 138px;
+    height: 77px;
+  }
+}

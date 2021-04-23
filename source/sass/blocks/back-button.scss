@@ -1,0 +1,30 @@
+.back-button {
+	position: relative;
+
+	width: 22px;
+	height: 24px;
+	padding: 0;
+
+	border: none;
+	background-color: transparent;
+
+	&::before, &::after {
+		content: "";
+		position: absolute;
+		left: 7px;
+		top: -2px;
+
+		width: 2px;
+		height: 17px;
+
+		border-radius: 2px;
+		background-color: $color-font-primary;
+		transform: rotate(45deg);
+	}
+
+	&::after {
+		top: 9px;
+
+		transform: rotate(135deg);
+	}
+}

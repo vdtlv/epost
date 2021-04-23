@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>App</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <h1 class="visually-hidden">Ещё название</h1>
+    <main class="container smm-editor">
+      <header class="main-page__header">
+      </header>
+      <section id="card" class="container card">
+         <div class="card__header">
+          <a href="smm-catalog" class="back-button" id="back"></a>
+          <div class="card__name card__name--smm">
+            <p type="text" id="smm-name" name="name"></p>
+            <label for="smm-name" class="visually-hidden">Name of the template</label>
+          </div>
+          <div class="card__img">
+            <div class="card__template"></div>
+          </div>
+        </div>
+        <div class="sub-card sub-card--smm">
+            <h3 class="visually-hidden">Edit image</h3>
+            <ul class="sub-card__image-list">
+
+            </ul>
+            <ul class="sub-card__text-list">
+
+            </ul>
+            <div class="sub-card__footer">
+              <button type="button" class="button sub-card__done-button sub-card__done-button--smm" id="create">Save</button>
+              <a class="button sub-card__done-button sub-card__done-button--smm hidden" id="save" href="" download="myimage">Download</a>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <template id="template-smm-picture">
+      <li class="card__image-layer">
+        <!-- <button type="button" class="button"></button> -->
+        <input type="file" alt="" id="">
+        <label for="" class="button"></label>
+        <!-- <button type="button" class="delete-button"></button> -->
+      </li>
+    </template>
+
+    <template id="template-smm-text">
+      <li class="card__text-layer input">
+        <input type="text" value="" id="">
+        <label for=""></label>
+      </li>
+    </template>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+.menu-button {
+	position: relative;
+
+	width: 22px;
+	height: 22px;
+
+	background-color: transparent;
+	border: none ;
+
+	&::after {
+		content: "";
+
+		position: absolute;
+		top: 9px;
+		left: 9px;
+
+		width: 5px;
+		height: 5px;
+
+
+		background-color: $color-font-primary;
+		border-radius: 50%;
+
+		box-shadow: 8px 0 $color-font-primary, -8px 0 $color-font-primary;
+	}
+}

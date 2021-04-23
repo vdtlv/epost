@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>App Design</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <h1 class="visually-hidden">Ещё название</h1>
+    <main class="container design-catalog">
+      <header class="main-page__header">
+        <h2>My templates</h2>
+        <a href="design-add-new" class="add-button"><span class="visually-hidden">Add template</span></a>
+      </header>
+      <section class="">
+        <ul class="" id="template-list">
+
+        </ul>
+      </section>
+    </main>
+
+
+    <!-- шаблон плитки дизайна -->
+    <template id="template-tile">
+      <li class="tile">
+        <article class="">
+          <div class="tile__template"></div>
+          <div class="tile__content">
+            <h3 class="tile__name"></h3>
+            <!-- <input type="text" placeholder="Additional info here" class="tile__add"> -->
+            <p class="tile__type"></p>
+            <div class="tile__footer">
+              <button class="button edit">Edit</button>
+              <button class="button delete-button"><span class="visually-hidden">Delete</span></button>
+            </div>
+          </div>
+        </article>
+      </li>
+    </template>
+
+    <!-- шаблон слоя -->
+    <template id="template-layer">
+      <div class="tile__layer"></div>
+    </template>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
