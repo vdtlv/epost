@@ -7,14 +7,14 @@
     <title>App</title>
     <link rel="stylesheet" href="css/style.css">
   </head>
-  <body class="login">
+  <body class="login login-page">
     <h1 class="visually-hidden">Ещё название</h1>
     <header class="container login__header">
-      <h2>Название</h2>
+      <h2>ePost</h2>
     </header>
     <main class="container login__main">
       <section>
-        <form action="/login" method="post">
+        <form action="/login" method="post" id="login">
           <div class="login__input input">
             <label for="login-email">Логин</label>
             <input type="email" id="login-email" name="email">
@@ -23,7 +23,6 @@
             <label for="login-password">Пароль</label>
             <input type="password" id="login-password" name="password">
           </div>
-          <!-- <a href="#">Забыли пароль?</a> -->
           <button type="submit" class="button">Войти</button>
         </form>
       </section>

@@ -19,6 +19,12 @@
 
         </ul>
       </section>
+      <section class="settings">
+        <h2 class="main-page__header">Settings</h2>
+        <form action="/logout?_method=DELETE" method="POST" id="logout">
+          <button type="submit" class="button">Logout</button>
+        </form>
+      </section>
     </main>
 
 
@@ -29,11 +35,10 @@
           <div class="tile__template"></div>
           <div class="tile__content">
             <h3 class="tile__name"></h3>
-            <!-- <input type="text" placeholder="Additional info here" class="tile__add"> -->
             <p class="tile__type"></p>
             <div class="tile__footer">
               <button class="button edit">Edit</button>
-              <button class="button delete-button"><span class="visually-hidden">Delete</span></button>
+              <button class="button delete-button"><img src="img/delete.svg" alt="" width="20" height="22"><span class="visually-hidden">Delete</span></button>
             </div>
           </div>
         </article>

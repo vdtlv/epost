@@ -83,13 +83,27 @@
 	margin-bottom: 12px;
 }
 
+.tile--index {
+  & h3 {
+    padding-left: 10px;
+  }
+
+  & p {
+    padding-left: 10px;
+  }
+
+  & a {
+    margin-left: 10px;
+  }
+}
+
 .tile__footer {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 }
 
-.tile__footer .button {
+.tile__footer .button:not(.delete-button) {
 	text-align: center;
 
 	padding-left: 13px;

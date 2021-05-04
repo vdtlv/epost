@@ -1,5 +1,0 @@
-{"id":"Instagram","data":[{"id":"ipost","name":"","type":"Post","width":1080,"height":1080,"ratio":"1x1"},{"id":"istory","name":"","type":"Story","width":1080,"height":1920,"ratio":"9x16"}],"_id":"4HZoxF6w2xRwCtRQ"}
-{"id":"Facebook","data":[{"id":"flinkedpost","name":"","type":"Linked Post","width":500,"height":261,"ratio":"2x1"},{"id":"fstory","name":"","type":"Story","width":1200,"height":630,"ratio":"2x1"},{"id":"fpagecover","name":"","type":"Page cover","width":820,"height":312,"ratio":"16x9"}],"_id":"6tPcQfsXf7FpxsXB"}
-{"id":"Twitter","data":[],"_id":"K6qJzL6m3H50pE34"}
-{"id":"Youtube","data":[],"_id":"Q9zhc0KZ8WIK0D3R"}
-{"id":"VK","data":[],"_id":"xEaclc6aCWATFTdw"}

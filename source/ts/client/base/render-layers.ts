@@ -1,9 +1,11 @@
 'use strict';
 
-import { generateLayerButton } from '../design/design-layer-buttons.js';
+import { TextLayer, ImageLayer, ShapeLayer } from '../base/layers.js';
+// import { templateData } from './template.js';
+import { generateLayerButton, generateBackgroundButton } from '../design/design-layer-buttons.js';
 
-const smmLayerImageTemplate: HTMLTemplateElement = document.querySelector('#template-smm-picture');
-const smmLayerTextTemplate: HTMLTemplateElement = document.querySelector('#template-smm-text');
+const smmLayerImageTemplate: HTMLTemplateElement = document.querySelector('#template-smm-picture') as HTMLTemplateElement;
+const smmLayerTextTemplate: HTMLTemplateElement = document.querySelector('#template-smm-text') as HTMLTemplateElement;
 const imageList = document.querySelector('.sub-card__image-list');
 const textList = document.querySelector('.sub-card__text-list');
 
@@ -11,15 +13,23 @@ const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
 let imageCounter = 0;
 let textCounter = 0;
-let shapeCounter = 0;
+// let shapeCounter = 0;
 
-export const renderTextLayer = (template, isSMM) => {
+export const renderBackgroundLayer = (color: string) => {
+  generateBackgroundButton(color);
+};
+
+export const renderTextLayer = (template: TextLayer, isSMM: boolean) => {
   const layerElement = document.createElement('div');
   layerElement.classList.add('card__element');
   layerElement.classList.add('card__element--empty');
   layerElement.id = template.id;
-  layerElement.style.fontSize = template.fontSize;
-  layerElement.style.textAlign = template.horAlign;
+  if(template.fontSize) {
+    layerElement.style.fontSize = template.fontSize.toString();
+  }
+  if(template.horAlign) {
+    layerElement.style.textAlign = template.horAlign;
+  }
   switch (template.horAlign) {
     case "left":
       layerElement.style.justifyContent = 'flex-start';
@@ -33,38 +43,39 @@ export const renderTextLayer = (template, isSMM) => {
       layerElement.style.justifyContent = 'flex-end';
       break;
   };
-  layerElement.style.alignItems = template.verAlign;
+  if(template.verAlign) {
+    layerElement.style.alignItems = template.verAlign;
+  }
   layerElement.style.fontSize = template.fontSize + 'px';
   renderCoordinatesSize(template, layerElement);
 
   if(isSMM) {
-    const textLayer = smmLayerTextTemplate.content.querySelector('li').cloneNode(true) as HTMLElement;
-    const input: HTMLInputElement = textLayer.querySelector('input') as HTMLInputElement;
-    const label = textLayer.querySelector('label');
-    textCounter++;
-    input.value = 'Sample text #' + textCounter;
-    label.textContent = 'Add text to text-field #' + textCounter;
-    input.id = template.id;
-    label.id = template.id;
-    textList.appendChild(textLayer);
-
-    layerElement.textContent = input.value;
-
-    input.addEventListener('input', () => {
+    if(smmLayerTextTemplate.content.querySelector('li')) {
+      const textLayer = smmLayerTextTemplate.content.querySelector('li')!.cloneNode(true) as HTMLElement;
+      const input: HTMLInputElement = textLayer.querySelector('input') as HTMLInputElement;
+      const label: HTMLElement = textLayer.querySelector('label') as HTMLElement;
+      textCounter++;
+      input.value = 'Sample text #' + textCounter;
+      label.textContent = 'Add text to text-field #' + textCounter;
+      input.id = template.id;
+      label.id = template.id;
+      if(textList) {
+        textList.appendChild(textLayer);
+      }
       layerElement.textContent = input.value;
-      layerElement.classList.remove('card__element--empty');
-    });
+      input.addEventListener('input', () => {
+        layerElement.textContent = input.value;
+        layerElement.classList.remove('card__element--empty');
+      });
+    }
   } else {
     layerElement.textContent = template.content;
-    console.log('imhere');
     generateLayerButton(template);
   }
-
-  console.log(layerElement);
   return layerElement;
 };
 
-export const renderImageLayer = (template, isSMM) => {
+export const renderImageLayer = (template: ImageLayer, isSMM: boolean) => {
   const layerElement = document.createElement('div');
   layerElement.classList.add('card__element');
   layerElement.id = template.id;
@@ -72,18 +83,22 @@ export const renderImageLayer = (template, isSMM) => {
   renderCoordinatesSize(template, layerElement);
 
   if(isSMM) {
-    const imageLayer = smmLayerImageTemplate.content.querySelector('li').cloneNode(true) as HTMLElement;
-    const button: HTMLInputElement = imageLayer.querySelector('input') as HTMLInputElement;
-    const label = imageLayer.querySelector('label');
-    imageCounter++;
-    imageList.appendChild(imageLayer);
-    button.setAttribute('id', template.id);
-    label.htmlFor = button.id;
-    label.addEventListener('click', () => {
-      button.click();
-    });
-    label.textContent = 'Add picture #' + imageCounter;
-    uploadImage(button, layerElement, label);
+    if(smmLayerImageTemplate.content.querySelector('li')) {
+      const imageLayer = smmLayerImageTemplate.content.querySelector('li')!.cloneNode(true) as HTMLElement;
+      const button: HTMLInputElement = imageLayer.querySelector('input') as HTMLInputElement;
+      const label: HTMLLabelElement = imageLayer.querySelector('label') as HTMLLabelElement;
+      imageCounter++;
+      if(imageList) {
+        imageList.appendChild(imageLayer);
+      }
+      button.setAttribute('id', template.id);
+      label.htmlFor = button.id;
+      label.addEventListener('click', () => {
+        button.click();
+      });
+      label.textContent = 'Add picture #' + imageCounter;
+      uploadImage(button, layerElement, label);
+    }
   } else {
     layerElement.textContent = template.content;
     generateLayerButton(template);
@@ -92,7 +107,7 @@ export const renderImageLayer = (template, isSMM) => {
   return layerElement;
 };
 
-export const renderShapeLayer = (template, isSMM) => {
+export const renderShapeLayer = (template: ShapeLayer, isSMM: boolean) => {
   const layerElement = document.createElement('div');
   layerElement.classList.add('card__element');
   layerElement.classList.add('card__element--shape');
@@ -118,8 +133,7 @@ export const renderShapeLayer = (template, isSMM) => {
   return layerElement;
 };
 
-export const renderCoordinatesSize = (template, target) => {
-  console.log(template);
+export const renderCoordinatesSize = (template: TextLayer | ImageLayer | ShapeLayer, target: HTMLElement) => {
   if(template.x) {
     target.style.left = template.x + '%';
   }
@@ -134,16 +148,16 @@ export const renderCoordinatesSize = (template, target) => {
   }
 };
 
-const setBackgroundImage = (chooser, preview, reader, label) => {
+const setBackgroundImage = (preview: HTMLElement, reader: FileReader, label: HTMLElement) => {
   reader.addEventListener('load', () => {
     label.textContent = 'Change image';
     preview.style.backgroundImage = 'url(' + reader.result + ')';
   });
 };
 
-const uploadImage = (chooser, preview, label) => {
+const uploadImage = (chooser: HTMLInputElement, preview: HTMLElement, label: HTMLElement) => {
   chooser.addEventListener('change', (evt) => {
-    const file = chooser.files[0];
+    const file = chooser.files![0]!;
     const fileName = file.name.toLowerCase();
     const matches = FILE_TYPES.some((it) => {
       return fileName.endsWith(it);
@@ -151,13 +165,7 @@ const uploadImage = (chooser, preview, label) => {
     if (matches) {
       const reader = new FileReader();
       reader.readAsDataURL(file);
-      if (preview.src) {
-        reader.addEventListener('load', () => {
-          preview.src = reader.result;
-        });
-      } else {
-        setBackgroundImage(chooser, preview, reader, label);
-      }
+      setBackgroundImage(preview, reader, label);
     } else {
       evt.preventDefault();
     }

@@ -18,6 +18,12 @@
 
         </ul>
       </section>
+      <section class="settings">
+        <h2 class="main-page__header">Settings</h2>
+        <form action="/logout?_method=DELETE" method="POST" id="logout">
+          <button type="submit" class="button">Logout</button>
+        </form>
+      </section>
     </main>
 
     <!-- шаблон плитки смм -->
@@ -27,11 +33,9 @@
           <div class="tile__template"></div>
           <div class="tile__content">
             <h3 class="tile__name"></h3>
-            <input type="text" placeholder="Additional info here" class="tile__add">
             <p class="tile__type"></p>
             <div class="tile__footer">
               <button class="button use">Use</button>
-              <button class="button delete-button"><span class="visually-hidden">Delete</span></button>
             </div>
           </div>
         </article>

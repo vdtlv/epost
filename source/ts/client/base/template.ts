@@ -4,18 +4,18 @@ const login = document.querySelector('.login');
 const register = document.querySelector('.register');
 
 import { generateId } from './../base/util.js';
-import { BackgroundLayer, TextLayer, ImageLayer, ShapeLayer } from './../base/layers.js';
+import { TextLayer, ImageLayer, ShapeLayer } from './../base/layers.js';
 
 const isOnIntroPages = () => register || login;
 
-class templateBaseData {
-  id: string;//должно привязываться ко кнопкам удаления и редактирования; а также к самому шаблону
-  social: string;
-  type: string;
-  name: string;
-  width: number;
-  height: number;
-  ratio: string;
+export class templateBaseData {
+  id?: string;
+  social?: string;
+  type?: string;
+  name?: string;
+  width?: number;
+  height?: number;
+  ratio?: string;
    constructor () {
     this.id = generateId();
   }
@@ -52,16 +52,26 @@ const getUserTemplateData = async (email: string) => {
   return templateData;
 };
 
-export const loadAllTemplates = async (email: string) => {
+export const loadAllTemplates = async (email?: string) => {
   if(!isOnIntroPages()) {
     if(!localStorage.getItem('templateBase')) {
       const templateBaseData = await getTemplateBaseData();
       localStorage.setItem('templateBase', JSON.stringify(templateBaseData));
     }
     if(!localStorage.getItem('userTemplates')) {
-      const userData = await getUserTemplateData(email);
-      const userTemplatesData = await userData.templates;
-      localStorage.setItem('userTemplates', JSON.stringify(userTemplatesData));
+      if(email) {
+        const userData = await getUserTemplateData(email);
+        if(userData) {
+          const userTemplatesData = await userData.templates;
+          localStorage.setItem('userTemplates', JSON.stringify(userTemplatesData));
+        }
+      }
     }
   }
+};
+
+
+export class templateGroupsData {
+  id: string = "";
+  data: Array<templateBaseData> = [];
 };

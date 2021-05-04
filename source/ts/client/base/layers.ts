@@ -1,9 +1,9 @@
 'use strict';
-import { generateId } from './util.js';
+import { generateId, DEFAULT_BACKGROUND } from './util.js';
 
 export class BackgroundLayer {
   id: string;
-  color: string;
+  color: string = DEFAULT_BACKGROUND;
 
   constructor () {
     this.id = 'b' + generateId();
@@ -11,7 +11,7 @@ export class BackgroundLayer {
 };
 
 class layer {
-  id: string;
+  id!: string;  // Инициализируется в конструкторах всех наследников, так что точно будет присутствовать
   x: number = 0;
   y: number = 0;
   width: number = 30;
@@ -23,9 +23,9 @@ export class TextLayer extends layer {
   // fontFamily: string;
   // fontStyle: string;//Ещё нет на макете
   // fontWeight: string;//Ещё нет на макете
-  fontSize: number;
-  horAlign: 'left' | 'center' | 'right';
-  verAlign: 'top' | 'center' | 'bottom';
+  fontSize?: number;
+  horAlign?: string;
+  verAlign?: string;
 
   constructor () {
     super();
@@ -44,6 +44,7 @@ export class ImageLayer extends layer {
 };
 
 export  class ShapeLayer extends layer {
+  content: string = 'Shape';
   backgroundColor: string = 'transparent';
   borderColor: string = '#000000';
   borderWidth: number = 0;

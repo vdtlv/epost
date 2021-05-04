@@ -10,14 +10,6 @@ body {
   background-color: $color-bg-primary;
 }
 
-html {
-  box-sizing: border-box;
-}
-
-*, *::before, *::after {
-  box-sizing: inherit;
-}
-
 img {
   max-width: 100%;
   height: auto;
@@ -55,7 +47,7 @@ a {
 .container {
   background-color: $color-bg-primary;
   padding: 0 6px;
-  width: $mobile-width;
+  width: 363px;
   margin: 0 auto;
 }
 
@@ -72,6 +64,11 @@ a {
   border: 2px solid $color-accent;
   border-radius: 4px;
   background-color: $color-accent;
+  box-sizing: border-box;
+
+  &:disabled {
+    opacity: 0.5;
+  }
 }
 
 .button--inverted {
