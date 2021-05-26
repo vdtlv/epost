@@ -33,27 +33,32 @@
   border-radius: 2px;
 
   &--1x1 {
-    width: 138px;
-    height: 138px;
+    width: 136px;
+    height: 136px;
   }
 
   &--2x1 {
-    width: 138px;
+    width: 136px;
     height: 69px;
   }
 
+  &--3x2 {
+    width: 136px;
+    height: 91px;
+  }
+
   &--4x3 {
-    width: 138px;
+    width: 136px;
     height: 104px;
   }
 
   &--9x16 {
     width: 77px;
-    height: 138px;
+    height: 136px;
   }
 
   &--16x9 {
-    width: 138px;
+    width: 136px;
     height: 77px;
   }
 }

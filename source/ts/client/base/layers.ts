@@ -20,10 +20,8 @@ class layer {
 
 export class TextLayer extends layer {
   content: string = 'Sample Text';
-  // fontFamily: string;
-  // fontStyle: string;//Ещё нет на макете
-  // fontWeight: string;//Ещё нет на макете
   fontSize?: number;
+  fontColor?: string;
   horAlign?: string;
   verAlign?: string;
 

@@ -1,19 +1,21 @@
 'use strict';
 
 import { TextLayer, ImageLayer, ShapeLayer } from '../base/layers.js';
-// import { templateData } from './template.js';
 import { generateLayerButton, generateBackgroundButton } from '../design/design-layer-buttons.js';
 
 const smmLayerImageTemplate: HTMLTemplateElement = document.querySelector('#template-smm-picture') as HTMLTemplateElement;
 const smmLayerTextTemplate: HTMLTemplateElement = document.querySelector('#template-smm-text') as HTMLTemplateElement;
 const imageList = document.querySelector('.sub-card__image-list');
 const textList = document.querySelector('.sub-card__text-list');
+// const template = document.querySelector('.card__template');
 
 const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+const X_TRANSLATE = 'translateX(-50%)';
+const Y_TRANSLATE = 'translateY(-50%)';
+const CENTER_TRANSLATE = 'translate(-50%, -50%)';
 
 let imageCounter = 0;
 let textCounter = 0;
-// let shapeCounter = 0;
 
 export const renderBackgroundLayer = (color: string) => {
   generateBackgroundButton(color);
@@ -26,6 +28,9 @@ export const renderTextLayer = (template: TextLayer, isSMM: boolean) => {
   layerElement.id = template.id;
   if(template.fontSize) {
     layerElement.style.fontSize = template.fontSize.toString();
+  }
+  if(template.fontColor) {
+    layerElement.style.color = template.fontColor;
   }
   if(template.horAlign) {
     layerElement.style.textAlign = template.horAlign;
@@ -107,11 +112,18 @@ export const renderImageLayer = (template: ImageLayer, isSMM: boolean) => {
   return layerElement;
 };
 
+// надо попробовтаь сделать так, чтобы высчитывалось расстояние от середины, а не от края
+
 export const renderShapeLayer = (template: ShapeLayer, isSMM: boolean) => {
   const layerElement = document.createElement('div');
   layerElement.classList.add('card__element');
-  layerElement.classList.add('card__element--shape');
   renderCoordinatesSize(template, layerElement);
+  if(template.backgroundColor) {
+    layerElement.style.backgroundColor = template.backgroundColor;
+  }
+  if(template.borderRadius) {
+    layerElement.style.borderRadius = template.borderRadius + '%';
+  }
   if(template.borderWidth) {
     layerElement.style.borderWidth = template.borderWidth + 'px';
     layerElement.style.borderStyle = 'solid';
@@ -119,16 +131,16 @@ export const renderShapeLayer = (template: ShapeLayer, isSMM: boolean) => {
       layerElement.style.borderColor = template.borderColor;
     }
   }
-  if(template.borderRadius) {
-    layerElement.style.borderRadius = template.borderRadius + '%';
-  }
-  if(template.backgroundColor) {
-    layerElement.style.backgroundColor = template.backgroundColor;
-  }
   if(!isSMM) {
     layerElement.id = template.id;
+    layerElement.classList.add('card__element--shape');
     layerElement.textContent = template.content;
     generateLayerButton(template);
+  } else {
+    setTimeout(() => {
+      renderCoordinatesSizeSMM(layerElement as thisHTMLElement);
+    }, 0);
+
   }
   return layerElement;
 };
@@ -145,6 +157,63 @@ export const renderCoordinatesSize = (template: TextLayer | ImageLayer | ShapeLa
   }
   if(template.height) {
     target.style.height = template.height + '%';
+  }
+};
+
+interface thisHTMLElement extends HTMLElement {
+  getComputedStyle?: Function;
+}
+
+const renderCoordinatesSizeSMM = (target: thisHTMLElement) => {
+  if(target) {
+    const style = window.getComputedStyle(target);
+    if(style) {
+      const targetHeight = parseInt(target.style.height);
+      const targetWidth = parseInt(target.style.width);
+
+      const initTargetTop = parseInt(target.style.top);
+      const initTargetLeft = parseInt(target.style.left);
+
+      const toCenterTop = targetHeight/2 + initTargetTop;
+      const toCenterLeft = targetWidth/2 + initTargetLeft;
+
+      const furthestY = initTargetTop + targetHeight;
+      const furthestX = initTargetLeft + targetWidth;
+
+      if ((toCenterTop === 50) && (toCenterLeft === 50)) {
+        target.style.top = '50%';
+        target.style.left = '50%';
+        target.style.transform = CENTER_TRANSLATE;
+      } else {
+        if((initTargetTop + targetHeight) > 100) {
+          target.style.top = 'auto';
+          target.style.bottom = '-' + (furthestY - 100) + '%';
+        } else {
+          if(toCenterTop === 50) {
+            target.style.top = '50%';
+            target.style.transform = Y_TRANSLATE;
+          } else if (toCenterTop > 50) {
+            target.style.top = 'auto';
+            target.style.bottom = (100 - furthestY) + '%';
+          }
+        }
+
+        if((initTargetLeft + targetWidth) > 100) {
+          target.style.left = 'auto';
+          target.style.right = '-' + (furthestX - 100) + '%';
+        } else {
+          if(toCenterLeft === 50) {
+            target.style.left = '50%';
+            target.style.transform = X_TRANSLATE;
+          } else if (toCenterLeft > 50) {
+            target.style.left = 'auto';
+            target.style.right = (100 - furthestX) + '%';
+          }
+        }
+      }
+      target.style.width = style.width;
+      target.style.height = style.height;
+    }
   }
 };
 

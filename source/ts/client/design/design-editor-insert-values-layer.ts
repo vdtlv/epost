@@ -32,8 +32,14 @@ export const insertLayerValues = (tab: HTMLElement, currentLayerObject: Backgrou
     const fontSizeInput : HTMLInputElement = tab.querySelector('.design-font-size') as HTMLInputElement;
     fontSizeInput.value = (currentLayerObject as TextLayer).fontSize!.toString();
   }
+  if ((currentLayerObject as TextLayer).fontColor) {
+    if ((currentLayerObject as TextLayer).fontColor !== '#000000') {
+      const fontColorInput : HTMLInputElement = tab.querySelector('.design-color') as HTMLInputElement;
+      fontColorInput.value = (currentLayerObject as TextLayer).fontColor!.toString();
+    }
+  }
   if ((currentLayerObject as TextLayer).horAlign) {
-    const horAlignInputs = tab.querySelectorAll('.design-horizontal-align') ;
+    const horAlignInputs = tab.querySelectorAll('.design-horizontal-align');
     horAlignInputs.forEach((input: Element) => {
       if((input as HTMLInputElement).value === (currentLayerObject as TextLayer).horAlign) {
         (input as HTMLInputElement).checked = true;
@@ -49,12 +55,16 @@ export const insertLayerValues = (tab: HTMLElement, currentLayerObject: Backgrou
     });
   }
   if ((currentLayerObject as ShapeLayer).backgroundColor) {
-    const backgroundColorInput : HTMLInputElement = tab.querySelector('.design-background') as HTMLInputElement;
-    backgroundColorInput.value = (currentLayerObject as ShapeLayer).backgroundColor;
+    if((currentLayerObject as ShapeLayer).backgroundColor !== 'transparent') {
+      const backgroundColorInput : HTMLInputElement = tab.querySelector('.design-background') as HTMLInputElement;
+      backgroundColorInput.value = (currentLayerObject as ShapeLayer).backgroundColor;
+    }
   }
   if ((currentLayerObject as ShapeLayer).borderColor) {
-    const borderColorInput : HTMLInputElement = tab.querySelector('.design-border-color') as HTMLInputElement;
-    borderColorInput.value = (currentLayerObject as ShapeLayer).borderColor;
+    if((currentLayerObject as ShapeLayer).borderColor !== '#000000') {
+      const borderColorInput : HTMLInputElement = tab.querySelector('.design-border-color') as HTMLInputElement;
+      borderColorInput.value = (currentLayerObject as ShapeLayer).borderColor;
+    }
   }
   if ((currentLayerObject as ShapeLayer).borderWidth) {
     const borderWidthInput : HTMLInputElement = tab.querySelector('.design-border-width') as HTMLInputElement;

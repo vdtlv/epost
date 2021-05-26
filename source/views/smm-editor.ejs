@@ -18,6 +18,7 @@
             <p class="card__smm-name" id="smm-name" name="name"></p>
           <div class="card__img">
             <div class="card__template"></div>
+            <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
           </div>
         </div>
         <div class="sub-card sub-card--smm">
@@ -28,9 +29,36 @@
             <ul class="sub-card__text-list">
 
             </ul>
-            <div class="sub-card__footer">
+            <ul class="sub-card__aspect-ratio-list">
+              <li class="sub-card__aspect-ratio">
+                <input class="aspect-ratio__button" type="radio" name="aspect-ratio" id="ar-1x1" value="1x1">
+                <label for="ar-1x1" class="aspect-ratio__label">1:1</label>
+              </li>
+              <li class="sub-card__aspect-ratio">
+                <input class="aspect-ratio__button" type="radio" name="aspect-ratio" id="ar-2x1" value="2x1">
+                <label for="ar-2x1" class="aspect-ratio__label">2:1</label>
+              </li>
+              <li class="sub-card__aspect-ratio">
+                <input class="aspect-ratio__button" type="radio" name="aspect-ratio" id="ar-3x2" value="3x2">
+                <label for="ar-3x2" class="aspect-ratio__label">3:2</label>
+              </li>
+              <li class="sub-card__aspect-ratio">
+                <input class="aspect-ratio__button" type="radio" name="aspect-ratio" id="ar-4x3" value="4x3">
+                <label for="ar-4x3" class="aspect-ratio__label">4:3</label>
+              </li>
+              <li class="sub-card__aspect-ratio">
+                <input class="aspect-ratio__button" type="radio" name="aspect-ratio" id="ar-9x16" value="9x16">
+                <label for="ar-9x16" class="aspect-ratio__label">9:16</label>
+              </li>
+              <li class="sub-card__aspect-ratio">
+                <input class="aspect-ratio__button" type="radio" name="aspect-ratio" id="ar-16x9" value="16x9">
+                <label for="ar-16x9" class="aspect-ratio__label">16:9</label>
+              </li>
+            </ul>
+            <div class="sub-card__footer sub-card__footer--smm">
               <button type="button" class="button sub-card__done-button sub-card__done-button--smm" id="create">Save</button>
-              <a class="button sub-card__done-button sub-card__done-button--smm hidden" id="save" href="" download="myimage">Download</a>
+              <ul class="sub-card__download-buttons-list"></ul>
+              <button type="button" class="button sub-card__done-button sub-card__done-button--smm download-all" id="download-all">Download All</button>
             </div>
           </form>
         </div>
@@ -48,6 +76,12 @@
       <li class="card__text-layer input">
         <input type="text" value="" id="">
         <label for=""></label>
+      </li>
+    </template>
+
+    <template id="template-download-button">
+      <li>
+        <a class="button sub-card__done-button sub-card__done-button--smm download-link" href="" target="_blank"></a>
       </li>
     </template>
 

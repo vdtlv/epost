@@ -47,8 +47,8 @@
 }
 
 .card__img {
-	width: 240px;
-	height: 240px;
+	width: 214px;
+	height: 214px;
 
 	display: flex;
 	justify-content: center;
@@ -58,39 +58,42 @@
 	margin: 13px auto 0;
 	padding: 13px;
 
-	border: 1px solid $color-border-primary;
 	border-radius: 4px;
-  background-color: $color-border-primary;
+  background-color: $color-img-bg;
 }
 
 .card__template {
   background-color: $color-bg-primary;
   position: relative;
   overflow: hidden;
-  border-radius: 2px;
 
   &--1x1 {
-    width: 215px;
-    height: 215px;
+    width: 214px;
+    height: 214px;
   }
 
   &--2x1 {
-    width: 215px;
+    width: 214px;
     height: 108px;
   }
 
+  &--3x2 {
+    width: 214px;
+    height: 143px;
+  }
+
   &--4x3 {
-    width: 215px;
+    width: 214px;
     height: 162px;
   }
 
   &--9x16 {
     width: 120px;
-    height: 215px;
+    height: 214px;
   }
 
   &--16x9 {
-    width: 215px;
+    width: 214px;
     height: 120px;
   }
 }
@@ -108,6 +111,7 @@
   overflow-wrap: break-word;
   width: 30%;
   height: 30%;
+  box-sizing: border-box;
 
   &--empty {
     background-color: fade-out(#ddaadd, 0.7);
@@ -122,10 +126,6 @@
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 406px);
-}
-
-.card__layers {
-
 }
 
 .card__layer {
@@ -155,16 +155,8 @@
 }
 
 .card__menu {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 340px;
-  padding: 35px 15px 0;
-  z-index: 5;
-
-	min-height: 132px;
-  background-color: $color-bg-primary;
+  padding-top: 35px;
+  min-height: 132px;
 }
 
 .card__save-button {

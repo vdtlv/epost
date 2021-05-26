@@ -23,25 +23,49 @@ export const setStartingInfo = () => {
     if(templateObject.background !== DEFAULT_BACKGROUND) {
       renderBackgroundLayer(templateObject.background);
     }
-    const textLayers = templateObject.textLayers;
-    textLayers.forEach((textLayer) => {
-      getCurrent().textLayersIterator++;
-      const textLayerElement = renderTextLayer(textLayer, false);
-      templateElement.appendChild(textLayerElement);
-    });
-    const imageLayers = templateObject.imageLayers;
-    imageLayers.forEach((imageLayer) => {
-      getCurrent().imageLayersIterator++;
-      imageLayer.content = 'Image layer #' + getCurrent().imageLayersIterator;
-      const imageLayerElement = renderImageLayer(imageLayer, false);
-      templateElement.appendChild(imageLayerElement);
-    });
-    const shapeLayers = templateObject.shapeLayers;
-    shapeLayers.forEach((shapeLayer) => {
-      getCurrent().shapeLayersIterator++;
-      shapeLayer.content = 'Shape layer #' + getCurrent().shapeLayersIterator;
-      const shapeLayerElement = renderShapeLayer(shapeLayer, false);
-      templateElement.appendChild(shapeLayerElement);
+    const layers = templateObject.layers;
+    layers.forEach((layer) => {
+      const layerType = layer.charAt(0);
+      switch (layerType) {
+        case "t":
+          if(templateObject.textLayers) {
+            for (let i = 0; i < templateObject.textLayers.length; i++) {
+              if(layer === templateObject.textLayers[i]!.id) {
+                const layerObject = templateObject.textLayers[i]!;
+                getCurrent().textLayersIterator++;
+                const textLayerElement = renderTextLayer(layerObject, false);
+                templateElement.appendChild(textLayerElement);
+              }
+            }
+          }
+          break;
+
+        case "i":
+          if(templateObject.textLayers) {
+            for (let i = 0; i < templateObject.imageLayers.length; i++) {
+              if(layer === templateObject.imageLayers[i]!.id) {
+                const layerObject = templateObject.imageLayers[i]!;
+                getCurrent().imageLayersIterator++;
+                const imageLayerElement = renderImageLayer(layerObject, false);
+                templateElement.appendChild(imageLayerElement);
+              }
+            }
+          }
+          break;
+
+        case "s":
+          if(templateObject.textLayers) {
+            for (let i = 0; i < templateObject.shapeLayers.length; i++) {
+              if(layer === templateObject.shapeLayers[i]!.id) {
+                const layerObject = templateObject.shapeLayers[i]!;
+                getCurrent().shapeLayersIterator++;
+                const shapeLayerElement = renderShapeLayer(layerObject, false);
+                templateElement.appendChild(shapeLayerElement);
+              }
+            }
+          }
+          break;
+      }
     });
   }
 };

@@ -1,6 +1,6 @@
 'use strict';
 
-import { closePopup } from './design-editor-popup.js';
+import { closePopup } from '../base/popup.js';
 import { onBackButtonClick } from './design-editor-back-button.js';
 import { openBackgroundTab, openTextTab, openImageTab, openShapeTab } from './design-editor-layer-tabs.js';
 import { onDoneBackgroundClick, onDoneTextLayerClick, onDoneImageLayerClick, onDoneShapeLayerClick } from './design-editor-done-button.js';

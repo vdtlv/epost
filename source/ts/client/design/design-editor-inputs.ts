@@ -8,9 +8,10 @@ const templateElement: HTMLElement = document.querySelector('.card__template') a
 const nameInput : HTMLInputElement = document.querySelector('#template-name') as HTMLInputElement;
 
 const HEX_REG_EX = new RegExp('^#(?:[0-9a-fA-F]{3}){1,2}$');
-const ERROR_MESSAGE_BACKGROUND : string = 'Wrong format!';
+const ERROR_MESSAGE_COLOR : string = 'Wrong format!';
 const DEFAULT_BACKGROUND_SHAPE : string = 'transparent';
 const DEFAULT_BORDER_SHAPE : string = '#000000';
+const DEFAULT_FONT_COLOR : string = '#000000';
 
 const backgroundTab : HTMLElement = document.querySelector('#background') as HTMLElement;
 const textTab : HTMLElement = document.querySelector('#text-layer') as HTMLElement;
@@ -29,7 +30,7 @@ const initBackgroundInput = () => {
       } else {
         (getCurrent().currentLayerObject as BackgroundLayer).color = DEFAULT_BACKGROUND;
         templateElement.style.backgroundColor = DEFAULT_BACKGROUND;
-        backgroundInput.setCustomValidity(ERROR_MESSAGE_BACKGROUND);
+        backgroundInput.setCustomValidity(ERROR_MESSAGE_COLOR);
         backgroundInput.reportValidity();
       }
     });
@@ -40,8 +41,9 @@ const initBackgroundInput = () => {
 const initTextInputs = () => {
   if(textTab) {
     initSizeInputs(textTab);
-    initCoordinatesInputs(textTab);
+    initCoordinatesInputs(textTab, false);
     const fontSizeInput : HTMLInputElement = textTab.querySelector('.design-font-size') as HTMLInputElement;
+    const fontColorInput : HTMLInputElement = textTab.querySelector('.design-color') as HTMLInputElement;
     const hAlignInputs = textTab.querySelectorAll('.design-horizontal-align');
     const vAlignInputs = textTab.querySelectorAll('.design-vertical-align');
     if (fontSizeInput) {
@@ -49,6 +51,23 @@ const initTextInputs = () => {
         (getCurrent().currentLayerObject as TextLayer).fontSize = parseInt(fontSizeInput.value);
         if(getCurrent().currentLayerElement) {
           getCurrent().currentLayerElement!.style.fontSize = fontSizeInput.value + 'px';
+        }
+      });
+    }
+    if (fontColorInput) {
+      fontColorInput.addEventListener('input', () => {
+        const element = getCurrent().currentLayerElement;
+        if (element) {
+          if (fontColorInput.value.match(HEX_REG_EX)) {
+            fontColorInput.setCustomValidity('');
+            (getCurrent().currentLayerObject as TextLayer).fontColor = fontColorInput.value;
+            element.style.color = fontColorInput.value;
+          } else {
+            (getCurrent().currentLayerObject as TextLayer).fontColor = DEFAULT_FONT_COLOR;
+            element.style.color = DEFAULT_FONT_COLOR;
+            fontColorInput.setCustomValidity(ERROR_MESSAGE_COLOR);
+            fontColorInput.reportValidity();
+          }
         }
       });
     }
@@ -94,7 +113,7 @@ const initTextInputs = () => {
 const initImageInputs = () => {
   if(imageTab) {
     initSizeInputs(imageTab);
-    initCoordinatesInputs(imageTab);
+    initCoordinatesInputs(imageTab, false);
   }
 };
 
@@ -103,7 +122,7 @@ const initImageInputs = () => {
 const initShapeInputs = () => {
   if(shapeTab) {
     initSizeInputs(shapeTab);
-    initCoordinatesInputs(shapeTab);
+    initCoordinatesInputs(shapeTab, true);
     const backgroundInput : HTMLInputElement = shapeTab.querySelector('.design-background') as HTMLInputElement;
     const borderColorInput : HTMLInputElement = shapeTab.querySelector('.design-border-color') as HTMLInputElement;
     const borderWidthInput : HTMLInputElement = shapeTab.querySelector('.design-border-width') as HTMLInputElement;
@@ -177,7 +196,7 @@ const initShapeColorsInputs = (input: HTMLInputElement, isBorder: boolean) => {
           (getCurrent().currentLayerObject as ShapeLayer).backgroundColor = DEFAULT_BACKGROUND_SHAPE;
           element.style.backgroundColor = DEFAULT_BACKGROUND_SHAPE;
         }
-        input.setCustomValidity(ERROR_MESSAGE_BACKGROUND);
+        input.setCustomValidity(ERROR_MESSAGE_COLOR);
         input.reportValidity();
       }
     }
@@ -229,7 +248,7 @@ const initSizeInputs = (tab: HTMLElement) => {
 };
 
 // Привязывает поля ввода координат к текущему слою
-const initCoordinatesInputs = (tab: HTMLElement) => {
+const initCoordinatesInputs = (tab: HTMLElement, isShape: boolean) => {
   const xInput : HTMLInputElement = tab.querySelector('.design-x') as HTMLInputElement;
   const yInput : HTMLInputElement = tab.querySelector('.design-y') as HTMLInputElement;
   if (xInput) {
@@ -237,10 +256,18 @@ const initCoordinatesInputs = (tab: HTMLElement) => {
       const element = getCurrent().currentLayerElement;
       if (element) {
         if(xInput.value) {
-          if(parseInt(xInput.value) < 0) {
-            xInput.value = '0';
-          } else if (parseInt(xInput.value) > 99) {
-            xInput.value = '99';
+          if(isShape) {
+            if(parseInt(xInput.value) < -99) {
+              xInput.value = '-99';
+            } else if (parseInt(xInput.value) > 99) {
+              xInput.value = '99';
+            }
+          } else {
+            if(parseInt(xInput.value) < 0) {
+              xInput.value = '0';
+            } else if (parseInt(xInput.value) > 99) {
+              xInput.value = '99';
+            }
           }
           (getCurrent().currentLayerObject as TextLayer | ImageLayer | ShapeLayer).x = parseInt(xInput.value);
           element.style.left = xInput.value + '%';
@@ -256,10 +283,18 @@ const initCoordinatesInputs = (tab: HTMLElement) => {
       const element = getCurrent().currentLayerElement;
       if (element) {
         if(yInput.value) {
-          if(parseInt(yInput.value) < 0) {
-            yInput.value = '0';
-          } else if (parseInt(yInput.value) > 99) {
-            yInput.value = '99';
+          if(isShape) {
+            if(parseInt(yInput.value) < -99) {
+              yInput.value = '-99';
+            } else if (parseInt(yInput.value) > 99) {
+              yInput.value = '99';
+            }
+          } else {
+            if(parseInt(yInput.value) < 0) {
+              yInput.value = '0';
+            } else if (parseInt(yInput.value) > 99) {
+              yInput.value = '99';
+            }
           }
           (getCurrent().currentLayerObject as TextLayer | ImageLayer | ShapeLayer).y = parseInt(yInput.value);
           element.style.top = yInput.value + '%';

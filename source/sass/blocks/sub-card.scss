@@ -26,22 +26,31 @@
 	padding-bottom: 26px;
 }
 
-.sub-card__footer .button {
+.sub-card__footer--smm {
+  flex-direction: column;
+}
+
+.sub-card__footer > .button {
 	width: 162px;
 }
 
 .sub-card__done-button {
 	background-color: $color-button-done;
   border-color: $color-button-done;
+
+  margin-bottom: 15px;
 }
 
-.sub-card__footer .sub-card__done-button--smm {
-	width: 100%
+.sub-card__footer > .sub-card__done-button--smm {
+	width: 100%;
+  position: relative;
+  z-index: 5;
 }
 
 .sub-card__back-button {
 	background-color: $color-button-back;
   border-color: $color-button-back;
+  height: 36px;
 }
 
 .sub-card__two-column-menu {
@@ -49,6 +58,10 @@
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-between;
+}
+
+.sub-card__two-column-menu p {
+  width: 100%;
 }
 
 .sub-card__radio-menu {
@@ -99,8 +112,6 @@
 	}
 }
 
-
-
 .sub-card__radio-menu input {
 	-webkit-appearance: none;
 
@@ -126,4 +137,55 @@
 	background-color: $color-border-primary;
 }
 
+.sub-card__download-buttons-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
 
+  & li {
+    width: 100%;
+    margin: 5px 0;
+  }
+  & a {
+    display: block;
+    position: relative;
+    width: 345px;
+    z-index: 4;
+    animation-name: download-button;
+    animation-duration: 1s;
+  }
+}
+
+@keyframes download-button {
+  0%{
+    z-index: 3;
+    top: -50px;
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
+  60% {
+    z-index: 3;
+    opacity: 0.7;
+  }
+
+  100% {
+    top: 0;
+    z-index: 4;
+    opacity: 1;
+  }
+}
+
+.sub-card__aspect-ratio-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 92px;
+  margin-bottom: 17px;
+}
+
+.sub-card__aspect-ratio {
+  position: relative;
+  width: 49px;
+  height: 36px;
+}

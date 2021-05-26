@@ -83,7 +83,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride('_method'));
 
-// Проверяет, авторизован ли пользователь
+// // Проверяет, авторизован ли пользователь
 function checkAuthenticated(request: Express.Request, response: Express.Response, next: Express.NextFunction) {
   if (request.isAuthenticated()) {
     return next()
@@ -91,7 +91,7 @@ function checkAuthenticated(request: Express.Request, response: Express.Response
   response.redirect('/login');
 };
 
-// Проверяет, авторизован ли пользователь
+// // Проверяет, авторизован ли пользователь
 function checkNotAuthenticated(request: Express.Request, response: Express.Response, next: Express.NextFunction) {
   if (request.isAuthenticated()) {
     return response.redirect('/');
@@ -140,7 +140,7 @@ app.get('/', checkAuthenticated, (_request: Express.Request, response: Express.R
 });
 
 
-app.get('/index', (_request: Express.Request, response: Express.Response) => {
+app.get('/index', checkAuthenticated, (_request: Express.Request, response: Express.Response) => {
   response.redirect('/');
 });
 

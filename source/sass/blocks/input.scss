@@ -8,7 +8,7 @@
 .input input {
 	font-family: inherit;
 
-	min-height: 29px;
+	min-height: 25px;
 
 	margin-bottom: 4px;
 	padding-left: 10px;
@@ -20,7 +20,7 @@
 .input label {
 	color: $color-font-secondary;
 	font-size: 13px;
-	line-height: 19px; 
+	line-height: 19px;
 
 	margin-bottom: 11px;
 }
@@ -30,6 +30,35 @@
 	width: 47.5%;
 
 	margin-top: -4px;
+
+  position: relative;
+}
+
+.input--half input {
+  width: 116px;
+}
+
+.input--half:after {
+  content: "%";
+  font-size: 14px;
+  line-height: 21px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 4px;
+  right: 0;
+  border-radius: 4px;
+  width: 30px;
+  height: 29px;
+  color: $color-bg-primary;
+  background-color: $color-percent-bg;
+}
+
+.input--px:after {
+  content: "px";
+  padding-bottom: 4px;
+  height: 25px;
 }
 
 .input--half label {

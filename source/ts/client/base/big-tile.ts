@@ -1,11 +1,13 @@
 'use-strict';
 
+import { openPopup } from './popup.js';
 import { templateData, loadAllTemplates } from './template.js';
 import { TextLayer, ShapeLayer } from './layers.js';
 
 const templateList = document.querySelector('#template-list') as HTMLUListElement;
 const tileTemplateElement = document.querySelector('#template-tile') as HTMLTemplateElement;
 const tileLayerTemplateElement = document.querySelector('#template-layer') as HTMLTemplateElement;
+let deletableTemplate: HTMLElement;
 
 const generateTemplateTile = (template: templateData) => {
   const tile = tileTemplateElement.content.querySelector('li')!.cloneNode(true) as HTMLElement;
@@ -78,8 +80,11 @@ const generateTemplateTile = (template: templateData) => {
             if(layerObject.content) {
               layerElement.textContent = layerObject.content;
             }
-            if((layerObject as TextLayer).fontSize!) {
+            if((layerObject as TextLayer).fontSize) {
               layerElement.style.fontSize = Math.floor(((layerObject as TextLayer).fontSize! * 1.7)) + 'px';
+            }
+            if((layerObject as TextLayer).fontColor) {
+              layerElement.style.color = (layerObject as TextLayer).fontColor!;
             }
             if((layerObject as TextLayer).horAlign) {
               layerElement.style.textAlign = (layerObject as TextLayer).horAlign!;
@@ -129,9 +134,9 @@ const addDeleteTemplateTile = (tile: HTMLElement) => {
   if(tile) {
     const button = tile.querySelector('.delete-button');
     if(button) {
-        button.addEventListener('click', function () {
-        tile.parentNode!.removeChild(tile);
-        removeTemplate(tile);
+      button.addEventListener('click', function () {
+        openPopup();
+        deletableTemplate = tile;
       });
     }
   }
@@ -166,13 +171,14 @@ const onUseClick = (tile: HTMLElement, object: templateData) => {
   }
 };
 
-const removeTemplate = (tile: HTMLElement) => {
-  if(tile) {
+export const removeTemplate = () => {
+  if(deletableTemplate) {
+    deletableTemplate.parentNode!.removeChild(deletableTemplate);
     if(localStorage.getItem('userEmail')) {
       const userEmail = JSON.parse(localStorage.getItem('userEmail') as string);
       const data = JSON.stringify({
         email: userEmail,
-        templateID: tile.id
+        templateID: deletableTemplate.id
       });
       const options = {
         method: 'post',

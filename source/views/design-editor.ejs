@@ -28,7 +28,7 @@
           </ul>
           <button type="button" class="button card__add-layer-button" id="add-layer">+</button>
         </div>
-        <div class="card__menu hidden" id="template-popup">
+        <div class="card__menu popup hidden" id="popup">
           <ul>
             <li>
               <button type="button" data-tab="background" id="background-button" class="button tab-button button--inverted">Add background</button>
@@ -86,6 +86,11 @@
               <input type="text" class="design-font-size" inputmode="decimal" id="design-text-font-size">
               <label for="design-text-font-size" class="">Only size, without px LMAO</label>
             </div>
+            <p>Text color</p>
+              <div class="input">
+                <input type="text" class="design-color" id="design-text-color">
+                <label for="design-text-color" class="">Input HEX code for text color like #fff or #123123. Text will be black, if something goes wrong.</label>
+              </div>
             <p>Text align</p>
             <div class="sub-card__two-column-menu">
               <ul class="sub-card__radio-menu">
@@ -175,21 +180,24 @@
                 <input type="text" class="design-height" id="design-shape-height" inputmode="decimal">
                 <label for="design-shape-height" class="">Height</label>
               </div>
-              <div class="input input--half">
-                <input type="text" class="design-background" id="design-shape-background" inputmode="decimal">
-                <label for="design-shape-background" class="">Inner Color</label>
+              <p>Shape Background</p>
+              <div class="input">
+                <input type="text" class="design-background" id="design-shape-background">
+                <label for="design-shape-background" class="">Input HEX code for shape background like #fff or #123123. Shape will be transparent, if something goes wrong.</label>
               </div>
-              <div class="input input--half">
-                <input type="text" class="design-border-color" id="design-shape-border-color" inputmode="decimal">
-                <label for="design-shape-border-color" class="">Border Color</label>
-              </div>
-              <div class="input input--half">
+              <p>Shape Border</p>
+              <div class="input input--half input--px">
                 <input type="text" class="design-border-width" id="design-shape-border-width" inputmode="decimal">
                 <label for="design-shape-border-width" class="">Border Width</label>
               </div>
-              <div class="input input--half">
+              <div class="input input--half input--px">
                 <input type="text" class="design-border-radius" id="design-shape-border-radius" inputmode="decimal">
                 <label for="design-shape-border-radius" class="">Border Radius</label>
+              </div>
+              <p>Shape Border Background</p>
+              <div class="input">
+                <input type="text" class="design-border-color" id="design-shape-border-color">
+                <label for="design-shape-border-color" class="">Input HEX code for border color like #fff or #123123. There is no transparency, color will be white, if something goes wrong.</label>
               </div>
               <p class="hint">*Text and shadow will be removed once you save the template</p>
             </div>
@@ -208,7 +216,7 @@
     <template id="template-layer-button">
       <li class="card__layer" data-id="">
         <button type="button" class="button button--inverted edit">Edit </button>
-        <button type="button" class="delete-layer"><span class="visually-hidden">Delete layer</span></button>
+        <button type="button" class="delete-layer"><img src="img/delete.svg" alt="" width="18" height="20"><span class="visually-hidden">Delete layer</span></button>
       </li>
     </template>
 

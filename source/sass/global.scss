@@ -76,6 +76,16 @@ a {
   color: $color-accent;
 }
 
+.button--delete {
+  color: $color-button-delete;
+  border-color: $color-button-delete;
+}
+
+.button--cancel {
+  color: $color-button-cancel;
+  border-color: $color-button-cancel;
+}
+
 .overlay {
   position: fixed;
   z-index: 4;
@@ -86,4 +96,24 @@ a {
   width: 100vw;
   height: 100vh;
   background-color: fade-out(black, 0.55);
+}
+
+.download-all {
+  display: none;
+}
+
+.download-all--show {
+  display: block;
+  animation-name: download-all-button;
+  animation-duration: 1s;
+}
+
+@keyframes download-all-button {
+  0%{
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
