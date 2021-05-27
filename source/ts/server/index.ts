@@ -13,7 +13,12 @@ import methodOverride from 'method-override';
 import mongo from 'mongodb';
 const { MongoClient } = mongo;
 
-const client = new MongoClient('mongodb+srv://dbvdtlv:dbvdtlv123456789@epostapp.hq5xe.mongodb.net/ePostApp?retryWrites=true&w=majority', { useUnifiedTopology: true });
+if (!("MONGO_URL" in process.env) || !("SESSION_SECRET" in process.env)) {
+  throw new Error("Environment variables not defined");
+}
+const client = new MongoClient(process.env.MONGO_URL as string, {
+  useUnifiedTopology: true,
+});
 
 import { initializePassport } from './passport-config.js';
 
@@ -55,7 +60,7 @@ const start = async () => {
     templateBaseData = client.db().collection('template-base-data');
 
 
-    app.listen(3000, () => console.log('open localhost:3000 in browser to use app'));
+    app.listen(process.env.PORT ?? 3000, () => console.log('open localhost:3000 in browser to use app'));
 
   } catch (error) {
     console.log('error below');

@@ -7,10 +7,10 @@ package-lock.json
 *.pdf
 *.psd
 *.sublime*
-.env
 node_modules/
 build/
 npm-debug.*
 source/css/*.css
 source/css/*.map
 Thumbs.db
+.env
