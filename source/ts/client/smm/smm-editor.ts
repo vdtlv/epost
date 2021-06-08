@@ -104,8 +104,8 @@ const onSaveClick = () => {
         css: ".card__template{font-family:'Inter','Arial',sans-serif;background-color:#ffffff;position:relative;overflow:hidden;}.card__template--1x1{width:214px;height:214px;}.card__template--2x1{width:214px;height:108px;}.card__template--3x2{width:214px;height:143px;}.card__template--4x3{width:214px;height:162px;}.card__template--9x16{width:120px;height:214px;}.card__template--16x9{width:214px;height:120px;}.card__element{position:absolute;pointer-events:none;line-height:normal;text-align:center;display:flex;align-items:center;justify-content:center;background-repeat:no-repeat;background-size:cover;background-position:center;overflow-wrap:break-word;width:30%;height:30%;box-sizing:border-box}"
       };
 
-      const username = "83b5ee95-729e-4d21-bd63-62011ebd797d";
-      const password = "34acb2ad-1978-49f8-8ad3-6f5b2cd6b897";
+      const username = "0e80f1b1-d48c-4bde-a705-88e69bbf2e32"; // "83b5ee95-729e-4d21-bd63-62011ebd797d";
+      const password =  "0df592b8-17f9-4459-aca6-d906537e7eb4"; // "34acb2ad-1978-49f8-8ad3-6f5b2cd6b897";
 
       const options = {
         method: 'POST',
